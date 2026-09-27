@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="desk.css">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1280px;height:640px;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;color:#fff;position:relative;
+ background:radial-gradient(900px 520px at 78% 35%,rgba(45,212,191,.35),transparent 60%),
+ radial-gradient(700px 500px at 5% 110%,rgba(129,140,248,.35),transparent 60%),linear-gradient(135deg,#050b16,#0b1a2e 55%,#15163d)}
+.copy{position:absolute;left:60px;top:104px;width:430px}
+.logo{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700}
+.mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#2dd4bf,#6366f1);display:grid;place-items:center;font-size:19px}
+h1{margin-top:30px;font-size:50px;line-height:1.05;font-weight:800;letter-spacing:-.035em;white-space:nowrap}
+h1 em{font-style:normal;background:linear-gradient(90deg,#5eead4,#a5b4fc);-webkit-background-clip:text;color:transparent}
+p{margin-top:18px;font-size:18px;line-height:1.5;color:rgba(255,255,255,.72)}
+.chips{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.lbl{position:absolute;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+#before{position:absolute;left:560px;top:74px}
+#after{position:absolute;left:700px;top:292px}
+.arrow{position:absolute;left:890px;top:120px;display:flex;align-items:center;gap:12px}
+.arrow svg{width:120px;height:90px}
+</style></head><body>
+<div class="copy">
+  <div class="logo"><div class="mark">▦</div>Desktop Cleaner</div>
+  <h1>Messy desktop.<br><em>One keystroke.</em></h1>
+  <p>A tiny macOS menu bar app that snaps every window into a clean layout — grid, focus, split and more.</p>
+  <div class="chips"><span class="chip">⌨️ Global hotkeys</span><span class="chip">↩︎ Undo</span><span class="chip">💾 Saved layouts</span><span class="chip">🪶 No dependencies</span><span class="chip">🍎 Native Swift</span></div>
+</div>
+<div class="lbl" style="left:560px;top:50px">Before</div><div id="before"></div>
+<div class="arrow"><svg viewBox="0 0 120 90"><path d="M8 12 C 70 12, 96 30, 100 72" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.5" stroke-dasharray="6 6"/><path d="M92 64 L100 76 L108 64" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/></svg>
+  <span class="key"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>G</kbd></span></div>
+<div class="lbl" style="left:700px;top:268px">After · Grid</div><div id="after"></div>
+<script src="frames.js"></script><script src="desk.js"></script>
+<script>desk(document.getElementById('before'), 300).set(FRAMES.messy); desk(document.getElementById('after'), 520).set(FRAMES.grid)</script>
+</body></html>

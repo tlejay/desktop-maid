@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="desk.css">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1280px;height:770px;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#fff;background:linear-gradient(135deg,#050b16,#0b1a2e 55%,#15163d);padding:44px 48px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 32px}
+.card{display:flex;flex-direction:column;gap:12px}
+.head{display:flex;align-items:center;justify-content:space-between}
+h3{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.card p{font-size:14px;line-height:1.45;color:rgba(255,255,255,.66);min-height:40px}
+.key kbd{font-size:12px;padding:5px 7px}
+</style></head><body><div class="grid" id="g"></div>
+<script src="frames.js"></script><script src="desk.js"></script>
+<script>
+const cards = [
+  ['grid', 'Grid', 'G', 'Every window on the screen, tiled into a tidy grid.'],
+  ['focus', 'Focus', 'F', 'Front window centred at 80% width. Every other app hides.'],
+  ['split', 'Split', 'S', 'The two front windows side by side, 50/50.'],
+  ['mainStack', 'Main + Stack', 'M', 'Front window takes 60% on the left; the rest stack on the right.'],
+  ['cascade', 'Cascade', 'C', 'Fanned like cards so every title bar stays visible.'],
+  ['clean', 'Clean Desk', 'D', 'Hide every app for a clear desktop. Press again to bring them back.'],
+]
+const g = document.getElementById('g')
+for (const [id, title, key, text] of cards) {
+  const c = document.createElement('div'); c.className = 'card'
+  c.innerHTML = `<div class="head"><h3>${title}</h3><span class="key"><kbd>⌃</kbd><kbd>⌥</kbd><kbd>${key}</kbd></span></div><div class="d"></div><p>${text}</p>`
+  g.appendChild(c)
+  const frames = id === 'clean' ? FRAMES.messy.map(f => ({ ...f, hidden: true })) : FRAMES[id]
+  const unmoved = id === 'split' ? ['Terminal', 'Notes', 'Music'] : null
+  desk(c.querySelector('.d'), 378, { dimUnmoved: unmoved }).set(frames, 1, id === 'clean' ? FRAMES.messy : null)
+}
+</script></body></html>

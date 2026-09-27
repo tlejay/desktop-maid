@@ -7,3 +7,4 @@ xcuserdata/
 .env
 .env.*
 !.env.example
+docs/readme-art/frames.js

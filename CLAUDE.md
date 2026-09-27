@@ -62,6 +62,9 @@ Named Layouts อยู่ในเมนู Layouts: บันทึกตำ�
 │   ├── install.sh                # build แล้วติดตั้งที่ ~/Applications (ตัวใช้งานจริง)
 │   └── check.sh                  # รัน Checks/ — ต้องผ่านก่อน commit ทุกครั้งที่แตะ Modes/
 ├── docs/MODES.md                 # ข้อเสนอโหมด + ลำดับการบิ้ว
+├── docs/images/                  # ภาพใน README (hero, modes, demo.gif, social-preview)
+├── docs/readme-art/              # ตัวสร้างภาพ README — build.sh
+├── README.md · LICENSE (MIT)
 └── build/                        # output (.gitignore)
 ```
 
@@ -95,9 +98,16 @@ macOS จำสิทธิ์ Accessibility ผูกกับ **ลายเ�
   ถ้าย้ายเครื่อง ต้องสร้างใบใหม่ด้วย openssl (x509 + `extendedKeyUsage = codeSigning`) แล้ว `security import … -T /usr/bin/codesign`
 - ถ้าติ๊กสิทธิ์แล้วยังไม่ทำงาน: ลบแอปออกจากรายการใน System Settings แล้วเพิ่มใหม่ หรือ `tccutil reset Accessibility com.madebytle.desktopcleaner`
 
+## README
+
+ภาพใน README เป็น **แผนภาพที่วาดจากตำแหน่งที่โค้ดโหมดจริงคำนวณ** ไม่ใช่ screenshot (Tle เลือก 27 ก.ย. 2026)
+`docs/readme-art/dump/main.swift` เรียก `LayoutModes.all` กับเดสก์ท็อปตัวอย่าง 5 หน้าต่าง → HTML วาด → PNG/GIF
+**แก้โหมด / เพิ่มโหมด / เปลี่ยนคีย์ลัด → รัน `./docs/readme-art/build.sh` แล้วแก้ตารางใน README ให้ตรง**
+(ต้องมี Node, ffmpeg และสกิล kiki-gh-readme) · ถ้าเพิ่มโหมดใหม่ ต้องเพิ่มการ์ดใน `modes.html` และ step ใน `anim.html` เอง
+
 ## Git
 
-- Remote: `github.com/tlejay/desktop-maid` (private) · branch `main`
+- Remote: `github.com/tlejay/desktop-maid` (private — เตรียมเปิด public แต่ **รอ Tle สั่งก่อน**) · branch `main`
 - `swift test` **ใช้ไม่ได้** บนเครื่องที่มีแค่ Command Line Tools (หา test runner ไม่เจอ แม้ compile ผ่าน) — เลยใช้ `Checks/` + `scripts/check.sh` แทน
 
 ## Conventions

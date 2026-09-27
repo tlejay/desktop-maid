@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="desk.css">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:880px;height:600px;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#fff;background:linear-gradient(135deg,#050b16,#0b1a2e 55%,#15163d);display:flex;flex-direction:column;align-items:center;padding-top:26px}
+.hud{height:62px;display:flex;align-items:center;gap:14px;margin-top:16px}
+.hud .name{font-size:22px;font-weight:700;letter-spacing:-.01em;min-width:170px}
+.hud .key kbd{font-size:15px;padding:7px 10px}
+.hud.pulse .key kbd{background:rgba(94,234,212,.35);border-color:#5eead4}
+</style></head><body><div id="d"></div><div class="hud" id="hud"><span class="key" id="key"></span><span class="name" id="name"></span></div>
+<script src="frames.js"></script><script src="desk.js"></script>
+<script>
+const hiddenAll = FRAMES.messy.map(f => ({ ...f, hidden: true }))
+// [frames, key, label] — each step animates from the previous state.
+const steps = [
+  [FRAMES.messy, '', 'A messy desktop…'],
+  [FRAMES.grid, 'G', 'Grid'],
+  [FRAMES.mainStack, 'M', 'Main + Stack'],
+  [FRAMES.focus, 'F', 'Focus'],
+  [FRAMES.mainStack, 'Z', 'Undo'],
+  [FRAMES.cascade, 'C', 'Cascade'],
+  [hiddenAll.map(f => ({ ...f, ...FRAMES.cascade.find(c => c.app === f.app), hidden: true })), 'D', 'Clean Desk'],
+  [FRAMES.cascade, 'D', 'Restore Desk'],
+]
+const MOVE = .45, HOLD = 1.25, STEP = MOVE + HOLD
+window.DURATION = steps.length * STEP
+const view = desk(document.getElementById('d'), 820)
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+window.renderAt = (sec) => {
+  const i = Math.min(steps.length - 1, Math.floor(sec / STEP))
+  const local = sec - i * STEP
+  const [frames, key, label] = steps[i]
+  const prev = i === 0 ? frames : steps[i - 1][0]
+  view.set(frames, ease(Math.min(1, local / MOVE)), prev)
+  document.getElementById('key').innerHTML = key ? `<kbd>⌃</kbd><kbd>⌥</kbd><kbd>${key}</kbd>` : ''
+  document.getElementById('name').textContent = label
+  document.getElementById('hud').classList.toggle('pulse', !!key && local < .35)
+}
+renderAt(0)
+</script></body></html>
