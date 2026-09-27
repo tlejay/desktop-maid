@@ -107,7 +107,7 @@ macOS จำสิทธิ์ Accessibility ผูกกับ **ลายเ�
 
 ## Git
 
-- Remote: `github.com/tlejay/desktop-maid` (private — เตรียมเปิด public แต่ **รอ Tle สั่งก่อน**) · branch `main`
+- Remote: `github.com/tlejay/desktop-maid` (**public** ตั้งแต่ 27 ก.ย. 2026 — ห้าม commit ข้อมูลส่วนตัว/path เครื่อง) · branch `main`
 - `swift test` **ใช้ไม่ได้** บนเครื่องที่มีแค่ Command Line Tools (หา test runner ไม่เจอ แม้ compile ผ่าน) — เลยใช้ `Checks/` + `scripts/check.sh` แทน
 
 ## Conventions
