@@ -14,8 +14,10 @@ Mac App เล็ก ๆ อยู่บน **Menu Bar** (ไม่มีไอ�
 
 | สถานะ | โหมด |
 |-------|------|
-| ✅ ยืนยันแล้ว | _(ยังไม่มี — รอ Tle เลือกจาก docs/MODES.md)_ |
-| 💡 เสนอ | Grid · Focus · Split · Main + Stack · Cascade · Clean Desk · Snapshot & Restore · Named Layouts |
+| ✅ v1 (Tle เลือก 27 ก.ย. 2026) | Grid + Undo · Focus · Clean Desk · Split · Main + Stack · Cascade · Named Layouts |
+| 💡 ภายหลัง | Snapshot & Restore (มากับ Undo) · Multi-display · Exclude list · Snap by hotkey |
+
+ลำดับบิ้ว: Grid + Undo → Focus / Split / Main + Stack → Clean Desk / Cascade → Named Layouts
 
 ## Tech Stack
 
@@ -73,6 +75,10 @@ macOS จำสิทธิ์ Accessibility ผูกกับ **ลายเ�
 - ทางแก้: สร้าง self-signed certificate ชื่อ **`Desktop Cleaner Dev`** ใน Keychain ครั้งเดียว (Keychain Access → Certificate Assistant → Create a Certificate → Type: Code Signing)
   `build-app.sh` จะใช้ใบนี้อัตโนมัติถ้าเจอ ไม่เจอจะ fallback เป็น ad-hoc
 - ถ้าติ๊กสิทธิ์แล้วยังไม่ทำงาน: ลบแอปออกจากรายการใน System Settings แล้วเพิ่มใหม่ หรือ `tccutil reset Accessibility com.madebytle.desktopcleaner`
+
+## Git
+
+- Remote: `github.com/tlejay/desktop-maid` (private) · branch `main`
 
 ## Conventions
 
